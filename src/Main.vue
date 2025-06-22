@@ -296,7 +296,7 @@ onMounted(async () => {
       switch(record.client) {
         case 'Parquet' : {
           const uint8 = Uint8Array.from(atob(record.data), c => c.charCodeAt(0))
-          const asyncBuffer = await asyncBufferFrom({file: new Blob([uint8]),byteLength:uint8.byteLength})
+          const asyncBuffer = await asyncBufferFrom({file: new File([uint8],'default'),byteLength:uint8.byteLength})
           const res = await parquetReadObjects({
             file:asyncBuffer,
             compressors,
